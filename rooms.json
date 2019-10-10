@@ -1,31 +1,36 @@
 {
-  "1":
+  "Living Room":
     {"Name" : "Living Room",
     "Description" : "Description: Living Room",
+    "Description2" : "Description: Living Room2",
     "Contents" : ["Map"],
     "Exits" : ["Hallway", "Kitchen"]
     },
-  "2":
+  "Kitchen":
     {"Name" : "Kitchen",
     "Description" : "Description: Kitchen",
+    "Description2" : "Description: Kitchen2",
     "Contents" : ["Knife"],
     "Exits" : ["Living Room", "Hallway", "Study"]
     },
-  "3":
+  "Study":
     {"Name" : "Study",
     "Description" : "Description: Study",
+    "Description2" : "Description: Study2",
     "Contents" : ["Safe"],
     "Exits" : ["Kitchen"]
     },
-  "4":
+  "Hallway":
     {"Name" : "Hallway",
     "Description" : "Description: Hallway",
+    "Description2" : "Description: Hallway2",
     "Contents" : ["Guard"],
     "Exits" : ["Living Room", "Kitchen","Yard"]
     },
-  "5":
+  "Yard":
     {"Name" : "Yard",
     "Description" : "Description: Yard",
+    "Description2" : "Description: Yard2",
     "Contents" : [],
     "Exits" : ["Hallway"]
     }
