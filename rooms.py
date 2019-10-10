@@ -18,10 +18,21 @@ class Room(object):
     def enter(self):
 
         if self.visited == False:
-            print("enter", self.description)
+            print(self.description)
             self.visited = True
+            if self.contents != []:
+                print("Looking around, you notice a", *self.contents, ".")
+            else:
+                print("There is nothing of note here.")
         else:
             print("enter", self.description2)
+            if self.contents != []:
+                print("You notice the", *self.contents, "is still there.")
+            else:
+                print("There is nothing of note here.")
+
+
+
 
 class LivingRoom(Room):
     pass
@@ -39,8 +50,6 @@ class Yard(Room):
     pass
 
 
-
-
 rooms = {
         'Living Room' : LivingRoom("Living Room"),
         'Kitchen' : Kitchen("Kitchen"),
@@ -48,20 +57,19 @@ rooms = {
         'Study' : Study("Study"),
         'Yard' : Yard("Yard")
         }
-# LivingRoom.enter()
-# LivingRoom.enter()
-# Kitchen.enter()
-# Kitchen.enter()
-# LivingRoom.enter()
+
 
 current_room = rooms['Living Room']
+print("You wake up in a strang living room.")
+current_room.enter()
 next_room = ""
-print(current_room.name)
+
 while True:
-    if current_room != next_room:
-        current_room.enter()
     next_room = input("Where do you want to go next?")
     if next_room in current_room.exits:
         current_room = rooms[next_room]
+        current_room.enter()
+    elif next_room == current_room.name :
+        print("You are already here.")
     else:
-        print("Try again")
+        print("There's no door to that room.")
