@@ -1,2 +1,2 @@
-class Map(object):
+class Game(object):
     pass
