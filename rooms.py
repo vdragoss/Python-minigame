@@ -60,7 +60,7 @@ rooms = {
 
 
 current_room = rooms['Living Room']
-print("You wake up in a strang living room.")
+print("You wake up in a strange living room.")
 current_room.enter()
 next_room = ""
 
