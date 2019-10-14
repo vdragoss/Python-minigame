@@ -45,12 +45,3 @@ class Player(object):
 
     def pick_lock(self):
         print("lockPick")
-
-
-
-a=Player()
-print("hlth", a.health)
-a.pick_up("horse")
-print("inventory", a.inventory)
-# a.pick_up("map")
-a.view_map()
