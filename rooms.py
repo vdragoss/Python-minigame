@@ -22,25 +22,12 @@ class Room(object):
     def enter(self):
         if self.visited == False:
             print(self.description)
-            return self.look_around()
         else:
             print("enter", self.description2)
-            return self.look_around()
 
-
-    def look_around(self):
-        if self.contents != "" and self.visited == False:
-            print("Looking around, you notice a", self.contents, ".")
-            self.visited = True
-            return True
-        elif self.contents != "" and self.visited == True:
-            print("You notice the", self.contents, "is still there.")
-            return True
-        else:
-            print("There is nothing of note here.")
 
     def action(self):
-        """ Each room class has a specific action"""
+        """ Each room class has a specific action """
 
 
 class LivingRoom(Room):

@@ -22,28 +22,29 @@ current_room = rooms['Living room']
 print("You wake up confused and try to remember your name...")
 a=Player()
 print("")
-if current_room.enter() == True:
-    current_room.action(a)
+current_room.enter()
 next_room = ""
 
 while True:
     print("")
     next_action = input("What's your next action?").lower()
 
-    if any(substr in next_action for substr in ["move", "go", "enter", "change"]) :
+    if any(substr in next_action for substr in ["move", "go", "enter", "change", "leave"]) :
         next_room = input("Where to?").capitalize()
         if next_room in current_room.exits:
             current_room = rooms[next_room]
             print("")
-            if current_room.enter() == True:
-                current_room.action(a)
+            current_room.enter()
+            if current_room.visited == False:
+                if a.investigate(current_room) == True:
+                    current_room.action(a)
         elif next_room == current_room.name :
             print("You are already here.")
         else:
             print("There's no door to that room.")
 
     elif any(substr in next_action for substr in ["look", "search", "investigate", "explore"]) :
-        if current_room.look_around() == True:
+        if a.investigate(current_room) == True:
             current_room.action(a)
 
     elif "knife" in next_action:

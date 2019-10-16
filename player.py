@@ -10,7 +10,7 @@ class Player(object):
         self.name = input("Name: ")
         self.health = self.define_health()
         self.guarded = True
-        pass
+
 
     def define_health(self):
         print(dedent("""
@@ -48,6 +48,7 @@ class Player(object):
 
 
     def open_lock(self, safe):
+
         if safe.locked == True:
             safe.safe_is_locked()
             guess = input("You think for a while, then try: ")
@@ -62,6 +63,17 @@ class Player(object):
         else:
             print(f"The unlocked door swings freely, showing the {safe.contents} still inside")
             return True
+
+    def investigate(self, room):
+        if room.contents != "" and room.visited == False:
+            print("Looking around, you notice a", room.contents, ".")
+            room.visited = True
+            return True
+        elif room.contents != "" and room.visited == True:
+            print("You notice the", room.contents, "is still there.")
+            return True
+        else:
+            print("There is nothing of note here.")
 
 
     def use(self, item):
