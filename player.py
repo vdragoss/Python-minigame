@@ -9,7 +9,6 @@ class Player(object):
         self.inventory = []
         self.name = input("Name: ")
         self.health = self.define_health()
-        self.guarded = True
 
 
     def define_health(self):
@@ -44,7 +43,7 @@ class Player(object):
             map = open("map.map", 'r')
             print(map.read())
         else:
-            print("You don't have the map.")
+            print("I don't understand that")
 
 
     def open_lock(self, safe):
@@ -64,6 +63,7 @@ class Player(object):
             print(f"The unlocked door swings freely, showing the {safe.contents} still inside")
             return True
 
+
     def investigate(self, room):
         if room.contents != "" and room.visited == False:
             print("Looking around, you notice a", room.contents, ".")
@@ -76,5 +76,23 @@ class Player(object):
             print("There is nothing of note here.")
 
 
-    def use(self, item):
-        print("use", item)
+    def use_item(self, item, room):
+        if room.name != "Hallway":
+            if item in self.inventory:
+                print(f"You briefly take the {item} out, thinking of a possible use.")
+            else:
+                print("I don't understand that")
+        else:
+            if item in self.inventory:
+                if item == "Knife":
+                    print(dedent("""
+                        The guard is taken by surprise by your action as your
+                        plunge the knife deep into his heart."""))
+                    return "Kill"
+                elif item == "Money":
+                    print(dedent("""
+                        You take out the stack of cash and place it in the guard's
+                        hand. He looks away, smirking."""))
+                    return "Bribe"
+            else:
+                print("I don't understand that")

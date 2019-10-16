@@ -1,8 +1,9 @@
 import json
-from player import Player
 from random import randrange
 from textwrap import dedent
+from player import Player
 from safe import Safe
+from guard import Guard
 
 
 with open("rooms.json") as f:
@@ -23,8 +24,7 @@ class Room(object):
         if self.visited == False:
             print(self.description)
         else:
-            print("enter", self.description2)
-
+            print(self.description2)
 
     def action(self):
         """ Each room class has a specific action """
@@ -73,26 +73,30 @@ class Study(Room):
 
 class Hallway(Room):
 
+    def __init__(self, name):
+        super().__init__(name)
+        self.guard=Guard()
+
     def action(self, player):
-        if input("Do you want to engage him? ").lower() == "yes":
-            print("He effortlessly pushes you aside.")
+        if self.guard.provoked == True:
+            self.guard.punch(player)
+            self.guard.provoked = False
         else:
-            print("You try to avoid eye contact.")
+            if input("Do you want to engage him? ").lower() == "yes":
+                if self.guard.surprised == True:
+                    print(dedent("""
+                        You approach while he calmly ignores you. As you reach him,
+                        he grunts and effortlessly pushes you aside. If only you
+                        could somehow get past, or make him leave..."""))
+                else:
+                    print(dedent("""
+                        You try to approach again but every step is met with a menacing
+                        stare. You stop in your tracks and consider your next move..."""))
+            else:
+                print("You try to avoid eye contact.")
 
 class Yard(Room):
-    def action(self, player):
-        if player.guarded == True:
-            punch = randrange(1,7)
-            print(f"You try and pass the guard but he punches you dealing {punch} damage.")
-            player.health -= punch
-            if player.health <= 0:
-                print("You fall, and your life flashes before your eyes.. \nYou are dead")
-                exit()
-            else:
-                print(dedent(f"""
-                    You take the punch and with {player.health} health left you
-                    carefully consider your next move.
-                    """))
-        else:
-            print("Congratulations! You escaped the house")
-            exit()
+
+    def action(self,player):
+        print("You have escaped the house. Congratulations!")
+        exit()

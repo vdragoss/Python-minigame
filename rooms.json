@@ -31,7 +31,7 @@
     {"Name" : "Yard",
     "Description" : "Description: Yard",
     "Description2" : "Description: Yard2",
-    "Contents" : [],
+    "Contents" : "",
     "Exits" : ["Hallway"]
     }
 }
