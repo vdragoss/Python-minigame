@@ -7,7 +7,7 @@ from guard import Guard
 
 
 with open("rooms.json") as f:
-    d = json.load(f)
+    d = json.load(f, strict=False)
 
 
 class Room(object):
@@ -22,7 +22,7 @@ class Room(object):
 
     def enter(self):
         if self.visited == False:
-            print(self.description)
+            print(self.description, end='')
         else:
             print(self.description2)
 
@@ -78,22 +78,25 @@ class Hallway(Room):
         self.guard=Guard()
 
     def action(self, player):
-        if self.guard.provoked == True:
-            self.guard.punch(player)
-            self.guard.provoked = False
-        else:
-            if input("Do you want to engage him? ").lower() == "yes":
-                if self.guard.surprised == True:
-                    print(dedent("""
-                        You approach while he calmly ignores you. As you reach him,
-                        he grunts and effortlessly pushes you aside. If only you
-                        could somehow get past, or make him leave..."""))
-                else:
-                    print(dedent("""
-                        You try to approach again but every step is met with a menacing
-                        stare. You stop in your tracks and consider your next move..."""))
+        if self.guard.alive == True:
+            if self.guard.provoked == True:
+                self.guard.punch(player)
+                self.guard.provoked = False
             else:
-                print("You try to avoid eye contact.")
+                if input("Do you want to engage him? ").lower() == "yes":
+                    if self.guard.surprised == True and self.guard.friend == False:
+                        print(dedent("""
+                            You approach while he calmly ignores you. As you reach him,
+                            he grunts and effortlessly pushes you aside. If only you
+                            could somehow get past, or make him leave..."""))
+                    else:
+                        print(dedent("""
+                            You try to approach again but every step is met with a menacing
+                            stare. You stop in your tracks and consider your next move..."""))
+                else:
+                    print("You try to avoid eye contact.")
+        else:
+            print("Dead guard")
 
 class Yard(Room):
 

@@ -24,4 +24,4 @@ class Guard(object):
         else:
             print(dedent(f""" You take the punch and your health drops to {player.health}.
                 As the guard watches your every move, you carefully consider
-                what to do next..."""))
+                what to do next. """))

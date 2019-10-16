@@ -19,8 +19,10 @@ class Game(object):
         current_room = self.start_room
         next_room = ""
         current_room.enter()
+        if a.investigate(current_room) == True:
+            current_room.action(a)
         while True:
-            next_action = input("What's your next action? ").lower()
+            next_action = input("\nWhat's your next action? ").lower()
 
             if any(substr in next_action for substr in ["move", "go", "enter", "change", "leave", "room"]) :
                 next_room = input("Where to?").capitalize()
@@ -56,6 +58,7 @@ class Game(object):
             elif "knife" in next_action:
                 if a.use_item("Knife", current_room) == "Kill":
                     current_room.guard.alive = False
+                    current_room.contents = "dead guard"
 
             elif "money" in next_action:
                 if a.use_item("Money", current_room) == "Bribe":

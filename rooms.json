@@ -1,29 +1,37 @@
 {
   "Living room":
     {"Name" : "Living room",
-    "Description" : "Description: Living room",
-    "Description2" : "Description: Living room2",
+    "Description" : "\nAs you open your eyes, you find yourself in a strange living room.
+Non-descript furniture fills the room and cheap paintings decorate
+the walls. A table looks strangely out of place. ",
+    "Description2" : "\nYou enter the same bland living room. ",
     "Contents" : "Map",
     "Exits" : ["Hallway", "Kitchen"]
     },
   "Kitchen":
     {"Name" : "Kitchen",
-    "Description" : "Description: Kitchen",
-    "Description2" : "Description: Kitchen2",
+    "Description" : "\nYou walk into the kitchen and the stench of rotting food hits you
+right away. It doesn't look like anyone used it in a while as none
+of the appliances are working. ",
+    "Description2" : "\nGoing back into the kitchen, somehow the smell is even worse. ",
     "Contents" : "Knife",
     "Exits" : ["Living room", "Hallway", "Study"]
     },
   "Study":
     {"Name" : "Study",
-    "Description" : "Description: Study",
-    "Description2" : "Description: Study2",
+    "Description" : "\nA narrow doorway opens into a small, dark study. The choice of
+books is barely better than the art in the living room. ",
+    "Description2" : "\nYou make your way back inside the study, only to wonder how
+could anyone read with this dim light. ",
     "Contents" : "Locked safe",
     "Exits" : ["Kitchen"]
     },
   "Hallway":
     {"Name" : "Hallway",
-    "Description" : "Description: Hallway",
-    "Description2" : "Description: Hallway2",
+    "Description" : "\nYou step into the hallway of the house, the only room with an
+outside connection. A short corner leads to what appears to be
+the enterance of the house. ",
+    "Description2" : "\nGoing back to the hallway, you realize it's the only way out. ",
     "Contents" : "Guard",
     "Exits" : ["Living room", "Kitchen","Yard"]
     },

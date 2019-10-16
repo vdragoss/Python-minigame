@@ -12,21 +12,22 @@ class Player(object):
 
 
     def define_health(self):
-        print(dedent("""
-            You feel weak and injured. Let's see your health.
-            ***Your health is determined by a 3d6 dye throw. You have 3 chances.***
+        print(dedent(f"""
+            Hello {self.name}. It seems you have been kidnapped. As you come to
+            your senses, you notice you are low on health. How low? It's up to chance.
+            Your health is determined by a 3d6 dye throw. You have 3 chances.
             """))
-        input(">")
+        input("Press ENTER to roll >")
         health = 3 * randrange(1,7)
         print("Your health is: ", health, "/100")
         for i in range(0,2):
-            try_again = input("Try again? Yes/No: ").lower()
-            if try_again == "no":
+            try_again = input("Try again? Yes/No: >").lower()
+            if try_again in ["no", "n"]:
                 break
-            elif try_again != "yes":
+            elif try_again not in ["yes","y",""]:
                 print("I'll take that as a 'No'. ")
                 break
-            elif try_again == "yes" and i == 1:
+            elif try_again in ["yes","y",""] and i == 1:
                 print("Final throw, let's hope for a good one")
             health = 2 * randrange(1,7)
             print("Your new health is: ", health, "/100")
@@ -40,6 +41,7 @@ class Player(object):
 
     def view_map(self):
         if "Map" in self.inventory:
+            print("")
             map = open("map.map", 'r')
             print(map.read())
         else:
