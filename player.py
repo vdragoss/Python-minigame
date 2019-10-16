@@ -9,7 +9,6 @@ class Player(object):
         self.inventory = []
         self.name = input("Name: ")
         self.health = self.define_health()
-        self.locked = True
         self.guarded = True
         pass
 
@@ -48,25 +47,20 @@ class Player(object):
             print("You don't have the map.")
 
 
-    def pick_lock(self):
-        combination = str(self.health) + self.name
-        if self.locked == True:
-            print(dedent("""
-                It seems the safe is locked with a strange combination. It reads:
-                Health comes first, \nAnd then your name
-                Solve this puzzle \nFame, fame, fame.
-                """))
+    def open_lock(self, safe):
+        if safe.locked == True:
+            safe.safe_is_locked()
             guess = input("You think for a while, then try: ")
-            while guess != combination:
+            while guess != safe.combination:
                 if input("Do you want to try again? ").lower() == "no":
                     print("You back away from the safe")
                     return False
-                guess = input("You think for a while, then try: ")
-            print("The lock opens and you open the door, revealing a stack of cash")
-            self.locked = False
+                guess = input("Thinking harder, you try: ")
+            print(f"The lock opens and you open the door, revealing the {safe.contents}")
+            safe.locked = False
             return True
         else:
-            print("The unlocked door swings freely, showing the money still inside")
+            print(f"The unlocked door swings freely, showing the {safe.contents} still inside")
             return True
 
 

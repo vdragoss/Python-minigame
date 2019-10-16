@@ -2,6 +2,7 @@ import json
 from player import Player
 from random import randrange
 from textwrap import dedent
+from safe import Safe
 
 
 with open("rooms.json") as f:
@@ -69,14 +70,17 @@ class Kitchen(Room):
 class Study(Room):
 
     def action(self, player):
+        if self.contents == "Locked safe":
+            self.safe = Safe(str(player.health) + player.name,"Money")
         if input("Do you want to open it? ").lower() == "yes":
-            if player.pick_lock() == True:
-                if input("Do you take the money?").lower() == "yes":
-                    print("You quickly place the money into your back pocket")
-                    player.add_item("Money")
+            if player.open_lock(self.safe) == True:
+                if input(f"Do you take the {self.safe.contents}?").lower() == "yes":
+                    print(f"You quickly place the {self.safe.contents} into your back pocket")
+                    player.add_item(self.safe.contents)
                     self.contents = ""
                 else:
                     print("Better not steal.")
+                    self.contents = "Unlocked safe"
         else:
             print("Ignoring it, you think about what to do next...")
 
