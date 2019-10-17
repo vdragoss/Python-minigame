@@ -21,7 +21,7 @@ class Player(object):
         health = 3 * randrange(1,7)
         print("Your health is: ", health, "/100")
         for i in range(0,2):
-            try_again = input("Try again? Yes/No: >").lower()
+            try_again = input("Try again? \n>").lower()
             if try_again in ["no", "n"]:
                 break
             elif try_again not in ["yes","y",""]:
@@ -41,7 +41,7 @@ class Player(object):
 
     def view_map(self):
         if "Map" in self.inventory:
-            print("")
+            print("You unfold the map, planning your next move.")
             map = open("map.map", 'r')
             print(map.read())
         else:
@@ -52,12 +52,12 @@ class Player(object):
 
         if safe.locked == True:
             safe.safe_is_locked()
-            guess = input("You think for a while, then try: ")
+            guess = input("You think for a while, then input your guess: \n>")
             while guess != safe.combination:
-                if input("Do you want to try again? ").lower() == "no":
+                if input("Do you want to try again? \n>").lower() in ["no", "n"]:
                     print("You back away from the safe")
                     return False
-                guess = input("Thinking harder, you try: ")
+                guess = input("Thinking harder, you try again: \n>")
             print(f"The lock opens and you open the door, revealing the {safe.contents}")
             safe.locked = False
             return True
@@ -68,7 +68,7 @@ class Player(object):
 
     def investigate(self, room):
         if room.contents != "" and room.visited == False:
-            print("Looking around, you notice a", room.contents, ".")
+            print("\nLooking around, you notice a", room.contents, ".")
             room.visited = True
             return True
         elif room.contents != "" and room.visited == True:
@@ -90,11 +90,16 @@ class Player(object):
                     print(dedent("""
                         The guard is taken by surprise by your action as your
                         plunge the knife deep into his heart."""))
+                    self.inventory.remove("Knife")
                     return "Kill"
-                elif item == "Money":
-                    print(dedent("""
-                        You take out the stack of cash and place it in the guard's
-                        hand. He looks away, smirking."""))
-                    return "Bribe"
+                elif item == "Money" :
+                    if room.guard.alive == True:
+                        print(dedent("""
+                            You take out the stack of cash and place it in the guard's
+                            hand. He takes it and looks away, smirking."""))
+                        self.inventory.remove("Money")
+                        return "Bribe"
+                    else:
+                        print("That would be a waste, giving money to dead people.")
             else:
                 print("I don't understand that")

@@ -22,10 +22,10 @@ class Game(object):
         if a.investigate(current_room) == True:
             current_room.action(a)
         while True:
-            next_action = input("\nWhat's your next action? ").lower()
+            next_action = input("\nWhat's your next action? >").lower()
 
             if any(substr in next_action for substr in ["move", "go", "enter", "change", "leave", "room"]) :
-                next_room = input("Where to?").capitalize()
+                next_room = input("Where to? >").capitalize()
                 if next_room in current_room.exits:
                     if next_room == "Yard":
                         if current_room.guard.alive == True and current_room.guard.friend == False:
