@@ -1,6 +1,7 @@
 from rooms import LivingRoom, Kitchen, Study, Hallway, Yard
 from player import Player
 from guard import Guard
+from textwrap import dedent
 
 class Game(object):
 
@@ -51,7 +52,7 @@ class Game(object):
                 else:
                     print("There's no door to that room.")
 
-            elif any(substr in next_action for substr in ["look", "search", "investigate", "explore"]) :
+            elif any(substr in next_action for substr in ["look", "search", "investigate", "explore", "interact"]) :
                 if a.investigate(current_room) == True:
                     current_room.action(a)
 
@@ -84,7 +85,14 @@ class Game(object):
 
 
 
+print(dedent("""
+    Welcome. This is a minigame written in python and was developed as an exercise.
+    The project can be found on Github: https://github.com/vdragoss/lpthw-minigame.
+    The scope of the game is to escape a house you find yourself trapped in. You can
+    *move* through the rooms, *search* them and *use* whatever items you find.
+    Let's begin!
 
+    """))
 print("You wake up confused and try to remember your name...")
 a=Player()
 game = Game("Living room")
