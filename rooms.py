@@ -1,6 +1,7 @@
 import json
 from random import randrange
 from textwrap import dedent
+
 from player import Player
 from safe import Safe
 from guard import Guard
@@ -96,4 +97,5 @@ class Yard(Room):
 
     def action(self,player):
         print("You have escaped the house. Congratulations!")
+        input("Press any key to exit: >")
         exit()

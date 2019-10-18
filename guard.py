@@ -1,6 +1,6 @@
 from random import randrange
 from textwrap import dedent
-from textwrap import wrap
+
 
 class Guard(object):
 
@@ -21,6 +21,7 @@ class Guard(object):
             print(dedent("""
                 You fall, and your life flashes before your eyes...
                 You are now dead """))
+            input("Press any key to exit: >")
             exit()
         else:
             print(dedent(f"""

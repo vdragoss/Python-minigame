@@ -1,7 +1,9 @@
+from textwrap import dedent
+
 from rooms import LivingRoom, Kitchen, Study, Hallway, Yard
 from player import Player
 from guard import Guard
-from textwrap import dedent
+
 
 class Game(object):
 
@@ -19,13 +21,16 @@ class Game(object):
     def play(self, player):
         current_room = self.start_room
         next_room = ""
+        movement = ["move", "go", "enter", "change", "leave", "room", "run", "walk"]
+        action = ["look", "search", "investigate", "explore", "interact"]
         current_room.enter()
         if a.investigate(current_room) == True:
             current_room.action(a)
         while True:
             next_action = input("\nWhat's your next action? >").lower()
 
-            if any(substr in next_action for substr in ["move", "go", "enter", "change", "leave", "room"]) :
+            if any(substr in next_action for substr in movement) :
+
                 next_room = input("Where to? >").capitalize()
                 if next_room in current_room.exits:
                     if next_room == "Yard":
@@ -52,7 +57,7 @@ class Game(object):
                 else:
                     print("There's no door to that room.")
 
-            elif any(substr in next_action for substr in ["look", "search", "investigate", "explore", "interact"]) :
+            elif any(substr in next_action for substr in action) :
                 if a.investigate(current_room) == True:
                     current_room.action(a)
 
@@ -82,7 +87,6 @@ class Game(object):
 
             else:
                 print("I don't understand that")
-
 
 
 print(dedent("""

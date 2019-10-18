@@ -1,5 +1,5 @@
-from player import Player
 from textwrap import dedent
+
 
 class Safe(object):
 
