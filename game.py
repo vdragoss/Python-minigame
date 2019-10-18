@@ -91,7 +91,7 @@ class Game(object):
 
 print(dedent("""
     Welcome. This is a minigame written in python and was developed as an exercise.
-    The project can be found on Github: https://github.com/vdragoss/lpthw-minigame.
+    The project can be found on Github: https://github.com/vdragoss/Python-minigame.
     The scope of the game is to escape a house you find yourself trapped in. You can
     *move* through the rooms, *search* them and *use* whatever items you find.
     Let's begin!
