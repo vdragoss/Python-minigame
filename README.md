@@ -1,7 +1,24 @@
 # Python minigame
-A small text game based on Exercise 45 from "Learn Python 3 the Hard Way".
-The scope of the game is to explore and escape from a house you find yourself 
-trapped in.
 
-If you just want to try the game out, download the files in the "dist" folder
-and run "game.exe".
+## Table of contents
+* [Introduction](#Introduction)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Sources](#sources)
+
+
+##Introduction
+This is a small text-based game with the simple objective of exploring and escaping from a house you found yourself trapped in.
+
+
+##Technologies
+Created with: 
+
+* Python 3.6
+* JSON
+
+##Setup
+To play the game, download "dist" folder and run "game.exe".
+
+##Sources
+The game is based on Exercise 45 from the book "Learn Python 3 the Hard Way".
