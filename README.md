@@ -1,4 +1,4 @@
-# lpthw-minigame
+# Python minigame
 A small text game based on Exercise 45 from "Learn Python 3 the Hard Way".
 The scope of the game is to explore and escape form a house you find yourself 
 trapped in.
