@@ -8,7 +8,7 @@
 
 
 ## Introduction
-This is a small text-based game with the simple objective of exploring and escaping from a house you found yourself trapped in.
+A game that places the player in a house with the simple objective of escaping it. Each room presents an unique mechanic, with several actions available, and multiple ways of approaching the task.
 
 
 ## Technologies
